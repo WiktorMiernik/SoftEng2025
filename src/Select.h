@@ -17,4 +17,6 @@ inline SortError Select<T, Container>::sort(SortData<T> & data) {
   return SE_SUCCESS;
 }
 
+#include "select.cpp"
+
 #endif
