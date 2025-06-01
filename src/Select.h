@@ -1,3 +1,18 @@
+#ifndef _SELECT_H
+#define _SELECT_H
+
+#include "SortData.h"
+#include "SortError.h"
+#include "SortTech.h"
+
+template <class T, template <typename...> class Container>
+class Select : public SortTech<T, Container> 
+{
+public:
+    inline SortError sort(SortData<T, Container> &data) override;
+};
+
+template <class T, template <typename...> class Container>
 inline SortError Select<T, Container>::sort(SortData<T, Container> &data)
 {
     size_t n = data.size();
@@ -20,3 +35,5 @@ inline SortError Select<T, Container>::sort(SortData<T, Container> &data)
 
     return SE_SUCCESS;
 }
+
+#endif
