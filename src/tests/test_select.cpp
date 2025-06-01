@@ -14,7 +14,7 @@ TEST(test_select, SortFunction)
 #endif
 
     // Przykładowe nieposortowane dane
-    std::vector<float> unsorted_data = {5.3, 2.1, 9.7, 1.4, 5.0, 6.2};
+    std::vector<float> unsorted_data = { 7.6, 8.3, 2.7, 6.4, 3.0, 1.2 };
     for (auto num : unsorted_data)
     {
         data.add(num);
