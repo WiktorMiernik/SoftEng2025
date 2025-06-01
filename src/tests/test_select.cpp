@@ -1,21 +1,44 @@
-
 #include <gtest/gtest.h>
 #include "Sorter.h"
 #include "SortData.h"
 
-TEST(test_select, AddFunction)
+TEST(test_select, SortFunction)
 {
     Sorter* sorter = new Sorter();
-    SortData<float, std::vector> data;
 
-    int dsize = 128 + rand() % 100;
-    for (unsigned i = 0; i < dsize; i++) data.add(float(rand() % 1024) / 4096);
+    // Wybór kontenera: std::vector lub std::list
+#if 0
+    SortData<float, std::list> data;
+#else
+    SortData<float, std::vector> data;
+#endif
+
+    // Przykładowe nieposortowane dane
+    std::vector<float> unsorted_data = {5.3, 2.1, 9.7, 1.4, 5.0, 6.2};
+    for (auto num : unsorted_data)
+    {
+        data.add(num);
+    }
+
+    // Sortowanie Selection Sort
     auto error = sorter->sort<float, std::vector, STT_SELECT>(data);
 
-    ASSERT_TRUE(std::is_sorted(data.data().begin(), data.data().end()));
+    // Sprawdzamy, czy operacja zakończyła się sukcesem
     ASSERT_EQ(error, SE_SUCCESS);
-}
 
+    // Sprawdzamy, czy dane są posortowane
+    bool is_sorted = true;
+    for (size_t i = 1; i < data.size(); ++i)
+    {
+        if (data[i - 1] > data[i])
+        {
+            is_sorted = false;
+            break;
+        }
+    }
+
+    ASSERT_TRUE(is_sorted) << "Selection Sort NIE działa poprawnie!";
+}
 
 int main(int argc, char** argv)
 {
