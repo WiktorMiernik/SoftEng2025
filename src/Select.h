@@ -6,8 +6,7 @@
 #include "SortTech.h"
 
 template <class T, template <typename...> class Container>
-class Select : public SortTech<T, Container> 
-{
+class Select : public SortTech<T, Container> {
 public:
     inline SortError sort(SortData<T, Container> &data) override;
 };
